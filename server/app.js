@@ -5,9 +5,6 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import postsRouter from './routes/posts';
-import { config } from "dotenv";
-
-config();
 
 const app = express();
 
@@ -16,7 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, '../public')));
+
+app.use(express.static(path.join(__dirname, '../publicExpress')));
+app.use(express.static(path.join(__dirname, "../build")));
 app.use('/css', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, '../node_modules/jquery/dist')));
 app.use('/js', express.static(path.join(__dirname, '../node_modules/popper.js/dist/umd')));

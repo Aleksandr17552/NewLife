@@ -6,6 +6,8 @@
     "exec": "npm run dev",
     "watch": [
       "server/*",
+      "src/*",
+      "publicExpress/*",
       "public/*"
     ],
     "ignore": [
@@ -22,16 +24,40 @@
   "jest": {
     "testEnvironment": "node"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "scripts": {
-    "start": "npm run prod",
-    "build": "npm-run-all clean transpile",
-    "server": "node ./dist-server/bin/www",
-    "dev": "NODE_ENV=development npm-run-all build server",
-    "prod": "NODE_ENV=production npm-run-all build server",
-    "transpile": "babel ./server --out-dir dist-server",
-    "clean": "rimraf dist-server",
+    "startDiv": "npm run watch:dev",
+    "startProd": "npm run prod",
     "watch:dev": "nodemon",
-    "test": "jest"
+    "prod": "NODE_ENV=production npm-run-all build server",
+    "dev": "NODE_ENV=development npm-run-all build server",
+    "build": "npm-run-all clean transpile",
+    "clean": "npm-run-all cleanReact cleanExpress",
+    "cleanReact": "rimraf build",
+    "cleanExpress": "rimraf dist-server",
+    "transpile": "npm-run-all buildReact buildExpress",
+    "buildReact": "react-scripts build",
+    "buildExpress": "babel ./server --out-dir dist-server",
+    "server": "node ./dist-server/bin/www",
+    "test": "jest",
+    "testReact": "react-scripts test"
   },
   "dependencies": {
     "@babel/cli": "^7.13.10",
@@ -49,7 +75,15 @@
     "pg": "^8.5.1",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
