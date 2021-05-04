@@ -1,7 +1,4 @@
 import React from "react";
-import axios from "axios";
-import "./styles.css";
-
 const INTERVAL = 100;
 
 export default class App extends React.Component {
@@ -34,9 +31,9 @@ export default class App extends React.Component {
       this.timerID = setInterval(() => this.increment(), 1000/INTERVAL);
     };
   }
-  
+
   resetTimer = () => {
-    this.state = {value: 0, stopped: false};		
+    this.state = {value: 0, stopped: false};
   }
 
   componentDidUpdate(){
@@ -45,7 +42,7 @@ export default class App extends React.Component {
     else document.title = "Таймер: "+Math.floor(value/INTERVAL/60/60)+":"
     +Math.floor(value/INTERVAL/60) % 60+":"+Math.floor(value/INTERVAL) % 60;
   }
-  
+
   render() {
     const value = this.state.value
     return (
@@ -56,11 +53,11 @@ export default class App extends React.Component {
           <span><kbd>{Math.floor(value/INTERVAL/60) % 60}</kbd> : </span>
           <span><kbd>{Math.floor(value/INTERVAL) % 60}</kbd> . </span>
           <span><kbd>{value % INTERVAL < 10 ? '0' : ''}{value % INTERVAL}</kbd></span>
-        </h1>						
+        </h1>
         <div>
         <button class="display-4" onClick={this.stopTimer}>
           {this.state.stopped?'Продолжить':'Остановить'}
-        </button> 
+        </button>
         <button class="display-4" onClick={this.resetTimer}>Сбросить</button>
         </div>
       </div>
