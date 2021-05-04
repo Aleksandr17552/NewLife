@@ -1,5 +1,9 @@
 import pg from 'pg'
+import { config } from "dotenv";
+
+config();
 const Pool = pg.Pool;
+
 const pool = new Pool({
   uesr: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
